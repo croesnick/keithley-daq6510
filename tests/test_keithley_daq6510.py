@@ -4,8 +4,6 @@
 
 import pytest
 
-from keithley_daq6510 import keithley_daq6510
-
 
 @pytest.fixture
 def response():

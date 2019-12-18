@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 
-"""The setup script."""
-
 from setuptools import setup, find_packages
 
 with open('README.rst') as readme_file:
@@ -31,7 +29,6 @@ dev_requires = tests_require + docs_require + [
     'wheel==0.33.6',
     'tox==3.14.0',
     'twine==1.14.0',
-    
 ]
 
 setup(
