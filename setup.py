@@ -11,7 +11,7 @@ with open('HISTORY.rst') as history_file:
 requirements = []
 
 tests_require = [
-    'coverage~=4.5.4',
+    'coverage==4.5.4',
     'flake8~=3.7.9',
     'pytest~=5.3.2',
     'pytest-cov~=2.8.1',
