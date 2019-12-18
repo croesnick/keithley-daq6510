@@ -1,0 +1,9 @@
+include LICENSE *.rst *.toml *.yml *.yaml *.ini
+
+recursive-include tests *.py
+
+recursive-include docs *.py *.rst *.jpg *.png *.gif
+
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]
+
