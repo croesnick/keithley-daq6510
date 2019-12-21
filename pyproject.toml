@@ -64,5 +64,5 @@ tests = ["coverage", "flake8", "mypy", "pytest"]
 [tool.poetry.dev-dependencies]
 pip = "~19.2.3"
 bump2version = "~0.5.11"
-#pyvisa-sim = { git = "https://github.com/croesnick/pyvisa-sim", branch = "feature/modernize" }
+pyvisa-sim = { git = "https://github.com/croesnick/pyvisa-sim.git", branch = "devel" }
 tox = "~3.14.0"
