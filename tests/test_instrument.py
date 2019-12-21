@@ -1,5 +1,7 @@
 import pytest
+
 from keithley_daq6510.instrument import Instrument
+
 
 @pytest.fixture
 def device(resource_manager):

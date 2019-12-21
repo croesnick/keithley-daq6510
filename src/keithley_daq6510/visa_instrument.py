@@ -1,6 +1,7 @@
 from typing import Optional
 
 from pyvisa import ResourceManager
+from pyvisa.resources import MessageBasedResource
 
 
 class VisaInstrument:
@@ -10,3 +11,9 @@ class VisaInstrument:
         self.terminator = terminator
 
         self.rm = rm if rm is not None else ResourceManager()
+
+        self.conn: MessageBasedResource = self.rm.open_resource(resource_name=self.name)
+
+    @property
+    def idn(self) -> str:
+        return self.conn.query('*IDN?')
