@@ -1,0 +1,13 @@
+spec: 1.1
+devices:
+  keithley:
+    eom:
+      GPIB INSTR:
+        q: "\n"
+        r: "\n"
+    dialogues:
+      - q: "*IDN?"
+        r: "Keithley Instruments Inc., Model DAQ 6510"
+resources:
+  GPIB::1::INSTR:
+    device: keithley
