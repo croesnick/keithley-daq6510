@@ -5,14 +5,19 @@ from pyvisa.resources import MessageBasedResource
 
 
 class VisaInstrument:
-    def __init__(self, name: str, address: str, terminator: str, rm: Optional[ResourceManager] = None):
+    def __init__(self, name: str, address: str, read_term: str, write_term: str,
+                 resource_manager: Optional[ResourceManager] = None):
         self.name = name
         self.address = address
-        self.terminator = terminator
+        self.read_termination = read_term
+        self.write_termination = write_term
 
-        self.rm = rm if rm is not None else ResourceManager()
+        self.resource_manager = resource_manager if resource_manager is not None else ResourceManager()
 
-        self.conn: MessageBasedResource = self.rm.open_resource(resource_name=self.name)
+        self.conn: MessageBasedResource = \
+            self.resource_manager.open_resource(self.address,
+                                                read_termination=self.read_termination,
+                                                write_termination=self.write_termination)
 
     @property
     def idn(self) -> str:
