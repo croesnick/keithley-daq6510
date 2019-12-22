@@ -3,10 +3,10 @@ Sample library for Keithley DAQ6510 instrument utilizing pyvisa and pyvisa-sim
 ==============================================================================
 
 
-.. image:: https://img.shields.io/pypi/v/keithley_daq6510.svg
+.. image:: https://img.shields.io/pypi/v/keithley-daq6510.svg
         :target: https://pypi.python.org/pypi/keithley_daq6510
 
-.. image:: https://img.shields.io/travis/croesnick/keithley_daq6510.svg
+.. image:: https://img.shields.io/travis/croesnick/keithley-daq6510.svg
         :target: https://travis-ci.org/croesnick/keithley_daq6510
 
 .. image:: https://readthedocs.org/projects/keithley-daq6510/badge/?version=latest
@@ -14,13 +14,13 @@ Sample library for Keithley DAQ6510 instrument utilizing pyvisa and pyvisa-sim
         :alt: Documentation Status
 
 
-.. image:: https://pyup.io/repos/github/croesnick/keithley_daq6510/shield.svg
+.. image:: https://pyup.io/repos/github/croesnick/keithley-daq6510/shield.svg
      :target: https://pyup.io/repos/github/croesnick/keithley_daq6510/
      :alt: Updates
 
 
 
-Sample library for Keithley DAQ6510 instrument utilizing pyvisa and pyvisa-sim
+Sample library for Keithley DAQ6510 instrument utilizing ``pyvisa`` and ``pyvisa-sim``
 
 
 * Free software: MIT license
