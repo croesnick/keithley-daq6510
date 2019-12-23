@@ -14,4 +14,4 @@ def test_init():
 
 
 def test_idn(device):
-    assert device.idn == 'Keithley Instruments Inc., Model DAQ 6510'
+    assert device.idn() == 'Keithley Instruments Inc., Model DAQ 6510'
