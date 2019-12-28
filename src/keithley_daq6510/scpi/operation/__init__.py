@@ -1,3 +1,8 @@
+# -*- coding: utf-8 -*-
+"""
+Module containing abstractions for SCPI operations (i.e., commands and queries).
+"""
+
 import logging
 import types
 from itertools import zip_longest
@@ -13,6 +18,18 @@ FormatterT = Callable[[str, Any], str]
 
 
 class Operation:
+    """
+    Abstraction for a SCPI operation (i.e., commands and queries).
+
+    Instances of this class are intended to be used just like descriptors would.
+
+    Example:
+        Base usage::
+
+            class Instrument:
+                idn = Operation('*IDN?')
+    """
+
     def __init__(self, command: str, formatter: FormatterT = comma_separated,
                  parameters: Optional[Iterable[Parameter]] = None):
         """
