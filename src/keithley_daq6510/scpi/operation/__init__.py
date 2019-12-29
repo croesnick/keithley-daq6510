@@ -19,8 +19,7 @@ ParametersT = Iterable[Parameter]
 
 
 class Operation:
-    """
-    Abstraction for a SCPI operation (i.e., commands and queries).
+    """Abstraction for a SCPI operation (i.e., commands and queries).
 
     Instances of this class are intended to be used just like descriptors would.
 
@@ -33,8 +32,7 @@ class Operation:
 
     def __init__(self, command: str, formatter: FormatterT = comma_separated,
                  parameters: Optional[Iterable[Parameter]] = None):
-        """
-        SCPI operation (command or query) builder.
+        """SCPI operation (command or query) builder.
 
         Example:
             Intended to be used in class attribute initialization::
@@ -54,8 +52,7 @@ class Operation:
         self.parameters = parameters
 
     def __get__(self, caller: MessageBasedConnection, cls=None) -> Callable[..., Any]:
-        """
-        Get function wrapping SCPI operation parameter validation and device communication, and bind it to ``caller``.
+        """Get function wrapping SCPI operation parameter validation and device communication, and bind it to ``caller``.
 
         Args:
             caller: Instrument instance.
@@ -66,8 +63,7 @@ class Operation:
         """
 
         def _operation(oself: MessageBasedConnection, *args: Any, **kwargs: Any) -> Any:
-            """
-            Actual parameter validation and operation execution.
+            """Actual parameter validation and operation execution.
 
             Args:
                 oself: Device connection.
@@ -107,8 +103,7 @@ class Operation:
         return types.MethodType(_operation, caller)
 
     def _execute(self, connection: MessageBasedConnection, *args, **kwargs) -> Any:
-        """
-        Build SCPI operation string and send it over the provided ``connection``.
+        """Build SCPI operation string and send it over the provided ``connection``.
 
         Args:
             connection: Device connection.

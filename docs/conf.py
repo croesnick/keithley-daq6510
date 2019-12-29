@@ -21,6 +21,8 @@ import os
 import sys
 sys.path.insert(0, os.path.abspath('..'))
 
+import sphinx_rtd_theme
+
 import keithley_daq6510
 
 # -- General configuration ---------------------------------------------
@@ -35,6 +37,7 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.viewcode',
     'sphinx.ext.napoleon',
+    'sphinx_rtd_theme',
     'sphinx_autodoc_typehints',
 ]
 
@@ -82,13 +85,18 @@ pygments_style = 'sphinx'
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = False
 
+# Napoleon settings
+napoleon_google_docstring = True
+napoleon_include_init_with_doc = True
+napoleon_include_special_with_doc = True
+napoleon_use_param = True
 
 # -- Options for HTML output -------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'alabaster'
+html_theme = 'sphinx_rtd_theme'
 
 # Theme options are theme-specific and customize the look and feel of a
 # theme further.  For a list of options available for each theme, see the
