@@ -15,6 +15,7 @@ from ...scpi.formatter.operation import comma_separated
 logger = logging.getLogger(__name__)
 
 FormatterT = Callable[[str, Any], str]
+ParametersT = Iterable[Parameter]
 
 
 class Operation:
@@ -83,28 +84,25 @@ class Operation:
 
             if self.parameters is None:
                 return self._execute(oself, *args, **kwargs)
-            else:
-                arguments = []
-                for value, field in zip_longest(args, self.parameters, fillvalue=None):
-                    if field is None:
-                        break
-                    if value is None and not field.optional:
-                        raise TypeError(f'Expected field {field.name}, but no argument were given')
 
-                    if field.validator is None:
-                        logger.debug(f'No validation requested for {field.name}={value}')
-                        continue
+            arguments = []
+            for arg, param in zip_longest(args, self.parameters, fillvalue=None):
+                if param is None:
+                    break
+                if arg is None and not param.optional:
+                    raise TypeError(f'Expected field {param.name}, but no argument were given')
 
-                    if isinstance(field.validator, Iterable) or isinstance(field.validator, Callable):  # type: ignore
-                        if not field.validator(value):
-                            raise ValueError(f'{field.name}={value} not within whitelisted values')
-                    else:
-                        raise TypeError(f'Unsupported validation type: {type(field.validator)}')
+                if param.validator is None:
+                    logger.debug(f'No validation requested for {param.name}={arg}')
+                    continue
 
-                    logger.debug(f'Validated {field.name}={value}')
-                    arguments.append(field.formatter(value))
+                if not param.validator(arg):
+                    raise ValueError(f'{param.name}={arg} not within whitelisted values')
 
-                return self._execute(oself, *arguments)
+                logger.debug(f'Validated {param.name}={arg}')
+                arguments.append(param.formatter(arg))
+
+            return self._execute(oself, *arguments)
 
         return types.MethodType(_operation, caller)
 

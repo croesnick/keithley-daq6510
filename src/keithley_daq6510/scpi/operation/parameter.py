@@ -33,7 +33,15 @@ class Parameter(Generic[T]):
             validator: Custom parameter whitelist or validation function.
                 Accepts an iterable of allowed values (whitelist) or a function.
                 If given a function, it is expected to return True if and only if the passed value is allowed.
+
+        Raises:
+            TypeError: If validator is none of None, an iterable, or a callable.
         """
         self.name = name
         self.formatter = formatter
+
+        if validator is not None:
+            if not (isinstance(validator, Iterable) or isinstance(validator, Callable)):  # type: ignore
+                raise TypeError(f'Unsupported validator type: {type(validator)}')
+
         self.validator = validator
