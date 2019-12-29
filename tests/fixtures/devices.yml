@@ -8,6 +8,7 @@ devices:
     dialogues:
       - q: "*IDN?"
         r: "Keithley Instruments Inc., Model DAQ 6510"
+      - q: ":STATus:CLEar"
 resources:
   GPIB::1::INSTR:
     device: keithley
