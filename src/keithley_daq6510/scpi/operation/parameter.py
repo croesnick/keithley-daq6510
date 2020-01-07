@@ -1,8 +1,8 @@
-from typing import Generic, Callable, Optional, TypeVar, Union, Iterable
+from typing import Generic, Callable, Optional, TypeVar, Union, Iterable, Type, Any
 
 T = TypeVar('T')
 FormatterT = Callable[..., str]
-Validator = Union[Iterable[T], Callable[[T], bool]]
+Validator = Union[Iterable[T], Callable[[T], bool], Type[Any]]
 
 
 class Parameter(Generic[T]):
@@ -41,7 +41,7 @@ class Parameter(Generic[T]):
         self.formatter = formatter
 
         if validator is not None:
-            if not (isinstance(validator, Iterable) or isinstance(validator, Callable)):  # type: ignore
+            if not any(isinstance(validator, vtype) for vtype in [Iterable, Callable, type]):  # type: ignore
                 raise TypeError(f'Unsupported validator type: {type(validator)}')
 
         self.validator = validator

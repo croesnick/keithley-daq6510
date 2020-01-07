@@ -92,6 +92,10 @@ class Operation:
                     logger.debug(f'No validation requested for {param.name}={arg}')
                     continue
 
+                if isinstance(param.validator, type):
+                    if not isinstance(arg, param.validator):
+                        raise ValueError(f'{param.name}={arg} expected to be of type={param.validator}; got type={type(arg)} instead')
+
                 if not param.validator(arg):
                     raise ValueError(f'{param.name}={arg} not within whitelisted values')
 
