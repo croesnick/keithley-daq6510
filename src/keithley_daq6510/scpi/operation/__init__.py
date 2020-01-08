@@ -85,7 +85,7 @@ class Operation:
             for arg, param in zip_longest(args, self.parameters, fillvalue=None):
                 if param is None:
                     break
-                if arg is None and not param.optional:
+                if arg is None:
                     raise TypeError(f'Expected field {param.name}, but no argument were given')
 
                 if param.validator is None:
